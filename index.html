@@ -5,22 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Designer</title>
+
+    <!--Loco Css-->
+    <link rel="stylesheet" href="./css/loco.css">
+
+    <!--Remix Icon-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+
+    <!--Style Css-->
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <div id="main">
-        <!-- <div id="home">
+        <div id="circle"></div>
+        <div id="home">
             <div id="nav">
                 <h4 class="logo">Cynthia Ugwu</h4>
                 <h4 class="menu">Menu+</h4>
             </div>
             <div class="title">
-                <h1>Product</h1>
+                <div class="bounding">
+                    <h1 class="boundingelem">Product</h1>
+                </div>
                 <div class="block_text">
-                    <h1>Designer</h1>
-                    <h4>Based in Toronto</h4>
+                    <div class="bounding">
+                        <h1 class="boundingelem">Designer</h1>
+                    </div>
+                    <div class="bounding">
+                        <h4 class="boundingelem">Based in Toronto</h4>
+                    </div>
                 </div>
             </div>
             <div class="subtitle">
@@ -35,9 +49,7 @@
                     <div class="circle"><i class="ri-arrow-up-line"></i></div>
                 </div>
             </div>
-        </div> -->
-
-        <!-- <div class="gap"></div>
+        </div>
 
         <div id="second">
             <div class="elem">
@@ -55,22 +67,50 @@
                 <h1>Hudu</h1>
                 <h4>2021</h4>
             </div>
-        </div> -->
-
-        <!-- <div class="gap"></div> -->
+        </div>
 
         <div id="third">
+            <img src="https://www.cynthiaugwu.com/images/cynthia.png" alt="">
+            <div class="text_about">
+                <h5>(ABOUT ME)</h5>
+                <p>I'm a product designer with a passion for creating products that not only look good but also solve
+                    real problems. When I'm not sketching ideas on paper, you can find me binge-watching a Netflix
+                    series or playing video games. My design philosophy is simple: make it visually appealing,
+                    functional, and bring a smile to people's faces. I'm the designer you want on your team if you want
+                    to make people say 'I need that in my life!'.</p>
+                <a href="#">Let's talk</a>
+            </div>
+        </div>
 
+        <div class="subscribe">
+            <h5>(forgot to mention)</h5>
+            <h4>SUBSCRIBE TO MY YOUTUBE CHANNEL<i class="ri-arrow-right-up-line"></i></h4>
+        </div>
+
+        <div class="footer">
+            <div class="footerleft">
+                <h5>2023 &copy;</h5>
+                <h5>0:05 AM EST</h5>
+            </div>
+            <div class="footerright">
+                <a href="#">Dribble</a>
+                <a href="#">Instagram</a>
+                <a href="#">Linkedin</a>
+                <a href="#">Twitter</a>
+            </div>
         </div>
     </div>
 
+    <!--Locomotive-->
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+
+    <!--GSAP-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
         integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
-        integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="main.js"></script>
+
+    <!--mian.js-->
+    <script src="./js/main.js"></script>
 </body>
 
 </html>
