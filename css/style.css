@@ -95,6 +95,9 @@ body {
 }
 
 .subtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
   margin-top: 150px;
   padding-right: 5vw;
 }
