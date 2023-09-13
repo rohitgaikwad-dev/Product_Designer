@@ -38,19 +38,19 @@ let circleScale = () => {
 
   let xprev = 0;
   let yprev = 0;
-  window.addEventListener("mousemove", (details) => {
+  window.addEventListener("mousemove", (e) => {
     clearTimeout(timeout);
 
-    xscale = gsap.utils.clamp(0.8, 1.2, details.pageX - xprev);
-    yscale = gsap.utils.clamp(0.8, 1.2, details.pageY - yprev);
+    xscale = gsap.utils.clamp(0.8, 1.2, e.pageX - xprev);
+    yscale = gsap.utils.clamp(0.8, 1.2, e.pageY - yprev);
 
-    xprev = details.pageX;
-    yprev = details.pageY;
+    xprev = e.pageX;
+    yprev = e.pageY;
 
     circleMouseFollower(xscale, yscale);
 
     timeout = setTimeout(() => {
-      circle.style.transform = `translateX(${details.pageX}px) translateY(${details.pageY}px) scale(1, 1)`;
+      circle.style.transform = `translateX(${e.pageX}px) translateY(${e.pageY}px) scale(1, 1)`;
     }, 100);
   });
 };
@@ -58,11 +58,43 @@ let circleScale = () => {
 let circleMouseFollower = (xscale, yscale) => {
   const circle = document.querySelector("#circle");
 
-  window.addEventListener("mousemove", (details) => {
-    circle.style.transform = `translate(${details.pageX}px, ${details.pageY}px) scale(${xscale}, ${yscale})`;
+  window.addEventListener("mousemove", (e) => {
+    circle.style.transform = `translate(${e.pageX}px, ${e.pageY}px) scale(${xscale}, ${yscale})`;
   });
 };
-
 homeAnime();
 circleScale();
 circleMouseFollower();
+
+const showImage = () => {
+  document.querySelectorAll(".elem").forEach((elem) => {
+    let rotate = 0;
+    let diffrot = 0;
+    elem.addEventListener("mousemove", (e) => {
+      let diffY = e.pageY - elem.getBoundingClientRect().top;
+      diffrot = rotate - e.pageX;
+      rotate = e.pageX;
+
+      gsap.to(elem.querySelector("img"), {
+        opacity: 1,
+        ease: Power3,
+        top: diffY,
+        left: e.pageX,
+        rotate: gsap.utils.clamp(-20, 20, diffrot * 0.5),
+      });
+    });
+  });
+};
+const hideImage = () => {
+  document.querySelectorAll(".elem").forEach((elem) => {
+    elem.addEventListener("mouseleave", (e) => {
+      gsap.to(elem.querySelector("img"), {
+        opacity: 0,
+        ease: Power3,
+      });
+    });
+  });
+};
+showImage();
+hideImage();
+
