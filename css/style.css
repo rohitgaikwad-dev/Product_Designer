@@ -13,6 +13,11 @@
   box-sizing: border-box;
 }
 
+*::selection{
+  color: #000;
+  background-color: #fff;
+}
+
 html,
 body {
   height: 100%;
@@ -27,6 +32,7 @@ body {
   top: -7px;
   left: -7px;
   background-color: #fff;
+  mix-blend-mode: difference;
   z-index: 11;
   transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
 }
@@ -70,7 +76,7 @@ body {
   margin-top: 100px;
   line-height: 1;
   padding: 0px 40px;
-  opacity: 0.6;
+  color: #999;
 }
 
 .title h1 {
@@ -137,7 +143,7 @@ body {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #888;
+  background-color: #999;;
 }
 
 #home_footer .circle i {
@@ -159,20 +165,20 @@ body {
   position: relative;
   width: 100%;
   padding: 3vw 0vw;
-  border-top: 1px solid #888;
+  border-top: 1px solid #999;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .elem h1 {
-  opacity: 0.6;
+  color: #999;
   font-size: 7.5vw;
   text-transform: uppercase;
 }
 
 .elem:nth-child(3) {
-  border-bottom: 1px solid #888;
+  border-bottom: 1px solid #999;
 }
 
 .elem img {
@@ -205,7 +211,7 @@ body {
 
 .text_about h5 {
   text-transform: uppercase;
-  opacity: 0.6;
+  color: #999;
   margin-bottom: 8px;
 }
 
@@ -233,7 +239,7 @@ body {
 
 .subscribe h5 {
   text-transform: uppercase;
-  opacity: 0.6;
+  color: #999;
 }
 
 .subscribe h4 {
@@ -266,4 +272,90 @@ body {
   text-decoration: none;
   text-transform: uppercase;
   color: #fff;
+}
+
+@media (max-width: 460px) {
+  #circle{
+    display: none;
+  }
+  #main{
+    overflow: hidden;
+  }
+  .title{
+    padding: 0vw 4vw;
+  }
+  .title h1{
+    font-size: 16vw;
+  }
+  .block_text h1{
+    margin-left: 40px;
+  }
+  .block_text h4{
+    font-size: 3vw;
+  }
+  .subtitle {
+    margin-top: 100px;
+  }
+  .subtitle h4{
+    font-size: 5vw;
+  }
+  #home_footer {
+    width: 100%;
+   bottom: 10%;
+  }
+  #home_footer a{
+    font-size: 3vw;
+    padding: 0px 5px;
+  }
+  #home_footer .circle i {
+    font-size: 5vw;
+  }
+
+  #second{
+    width: 100%;
+    height: 50vh;
+    padding-right: 0px;
+    margin: 15vw 0vw 0vw 0vw;
+  }
+  .elem img{
+    display: none;
+  }
+  .elem h1{
+    font-size: 14vw;
+  }
+  .elem h4{
+    padding-right: 10px;
+  }
+
+  #third{
+    width: 100%;
+    flex-direction: column;
+    gap: 25px;
+    padding: 0px;
+    margin-bottom: 10vw;
+  }
+  #third img{
+    height: 200px;
+  }
+  .text_about {
+    width: 100%;
+    text-align: center;
+  }
+  .text_about p{
+    padding: 6vw;
+    line-height: 1.2;
+  }
+  .text_about a{
+    padding: 3vw 9vw;
+  }
+  .subscribe{
+    padding: 4vw 6vw;
+  }
+  .subscribe h4{
+    font-size: 4vw;
+  }
+  .footer{
+    flex-direction: column-reverse;
+    gap: 2vw;
+  }
 }

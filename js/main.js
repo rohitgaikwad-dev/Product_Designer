@@ -1,3 +1,4 @@
+const circle = document.querySelector("#circle");
 let timeout;
 
 const scroll = new LocomotiveScroll({
@@ -30,9 +31,24 @@ let homeAnime = () => {
     });
 };
 
-let circleScale = () => {
-  const circle = document.querySelector("#circle");
+let circleOut = () => {
+  window.addEventListener("mouseout", (e) => {
+    let w = window.innerWidth - 20;
+    let h = window.innerHeight - 20;
+    let x = e.pageX;
+    let y = e.pageY;
 
+    if (x > w || y > h || x < 20 || y < 20) {
+      circle.style.opacity = 0;
+    } else {
+      circle.style.opacity = 1;
+    }
+  });
+};
+
+circleOut();
+
+let circleScale = () => {
   let xscale = 1;
   let yscale = 1;
 
@@ -56,8 +72,6 @@ let circleScale = () => {
 };
 
 let circleMouseFollower = (xscale, yscale) => {
-  const circle = document.querySelector("#circle");
-
   window.addEventListener("mousemove", (e) => {
     circle.style.transform = `translate(${e.pageX}px, ${e.pageY}px) scale(${xscale}, ${yscale})`;
   });
@@ -97,4 +111,3 @@ const hideImage = () => {
 };
 showImage();
 hideImage();
-
