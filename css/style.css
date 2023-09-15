@@ -233,7 +233,6 @@ body {
 .subscribe {
   color: #fff;
   padding: 20px 30px;
-  padding-bottom: 8vw;
   background-color: #000;
 }
 
@@ -253,7 +252,7 @@ body {
   align-items: center;
   justify-content: space-between;
   color: #fff;
-  padding: 20px 40px;
+  padding: 50px 40px;
   background-color: #000;
 }
 
