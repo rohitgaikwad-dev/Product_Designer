@@ -24,17 +24,8 @@ body {
   width: 100%;
 }
 
-#circle {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  position: absolute;
-  top: -7px;
-  left: -7px;
-  background-color: #fff;
-  mix-blend-mode: difference;
-  z-index: 11;
-  transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+.mf-cursor{
+  color: white;
 }
 
 .bounding{

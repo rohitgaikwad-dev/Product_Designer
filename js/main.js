@@ -1,10 +1,13 @@
-const circle = document.querySelector("#circle");
-let timeout;
+let cursor = new MouseFollower();
 
 const scroll = new LocomotiveScroll({
   el: document.querySelector("#main"),
   smooth: true,
 });
+
+window.addEventListener('load', () =>{
+  console.log('fully ')
+})
 
 let homeAnime = () => {
   let tl = gsap.timeline();
@@ -30,55 +33,7 @@ let homeAnime = () => {
       ease: Expo.easeInOut,
     });
 };
-
-let circleOut = () => {
-  window.addEventListener("mouseout", (e) => {
-    let w = window.innerWidth - 20;
-    let h = window.innerHeight - 20;
-    let x = e.pageX;
-    let y = e.pageY;
-
-    if (x > w || y > h || x < 20 || y < 20) {
-      circle.style.opacity = 0;
-    } else {
-      circle.style.opacity = 1;
-    }
-  });
-};
-
-circleOut();
-
-let circleScale = () => {
-  let xscale = 1;
-  let yscale = 1;
-
-  let xprev = 0;
-  let yprev = 0;
-  window.addEventListener("mousemove", (e) => {
-    clearTimeout(timeout);
-
-    xscale = gsap.utils.clamp(0.8, 1.2, e.pageX - xprev);
-    yscale = gsap.utils.clamp(0.8, 1.2, e.pageY - yprev);
-
-    xprev = e.pageX;
-    yprev = e.pageY;
-
-    circleMouseFollower(xscale, yscale);
-
-    timeout = setTimeout(() => {
-      circle.style.transform = `translateX(${e.pageX}px) translateY(${e.pageY}px) scale(1, 1)`;
-    }, 100);
-  });
-};
-
-let circleMouseFollower = (xscale, yscale) => {
-  window.addEventListener("mousemove", (e) => {
-    circle.style.transform = `translate(${e.pageX}px, ${e.pageY}px) scale(${xscale}, ${yscale})`;
-  });
-};
 homeAnime();
-circleScale();
-circleMouseFollower();
 
 const showImage = () => {
   document.querySelectorAll(".elem").forEach((elem) => {

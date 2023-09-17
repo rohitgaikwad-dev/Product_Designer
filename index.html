@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Designer</title>
+    <!--Cuberto-->
+    <link rel="stylesheet" href="https://unpkg.com/mouse-follower@1/dist/mouse-follower.min.css">
 
     <!--Loco Css-->
     <link rel="stylesheet" href="./css/loco.css">
@@ -17,9 +19,8 @@
 </head>
 
 <body>
-    <div id="circle"></div>
     <div id="main">
-        <div id="home">
+        <div id="home" data-cursor="-exclusion -lg">
             <div id="nav">
                 <h4 class="logo">Cynthia Ugwu</h4>
                 <h4 class="menu">Menu+</h4>
@@ -56,24 +57,24 @@
         </div>
 
         <div id="second">
-            <div class="elem">
+            <div data-cursor-text=" View" class="elem">
                 <img src="./assets//images/plug.png" alt="">
                 <h1>The Plug</h1>
                 <h4>2022</h4>
             </div>
-            <div class="elem">
+            <div data-cursor-text="View" class="elem">
                 <img src="./assets//images/ixperience.png" alt="">
                 <h1>Ixperience</h1>
                 <h4>2022</h4>
             </div>
-            <div class="elem">
+            <div data-cursor-text="View" class="elem">
                 <img src="./assets/images/hudu.png" alt="">
                 <h1>Hudu</h1>
                 <h4>2021</h4>
             </div>
         </div>
 
-        <div id="third">
+        <div id="third" data-cursor="-exclusion -lg">
             <img src="https://www.cynthiaugwu.com/images/cynthia.png" alt="">
             <div class="text_about">
                 <h5>(ABOUT ME)</h5>
@@ -86,12 +87,12 @@
             </div>
         </div>
 
-        <div class="subscribe">
+        <div class="subscribe" data-cursor="-exclusion -lg">
             <h5>(forgot to mention)</h5>
             <h4>SUBSCRIBE TO MY YOUTUBE CHANNEL<i class="ri-arrow-right-up-line"></i></h4>
         </div>
 
-        <div class="footer">
+        <div class="footer" data-cursor="-exclusion -lg">
             <div class="footerleft">
                 <h5>2023 &copy;</h5>
                 <h5>0:05 AM EST</h5>
@@ -104,6 +105,8 @@
             </div>
         </div>
     </div>
+    <!--Cuberto-->
+    <script src="https://unpkg.com/mouse-follower@1/dist/mouse-follower.min.js"></script>
 
     <!--Locomotive-->
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
