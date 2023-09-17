@@ -5,35 +5,72 @@ const scroll = new LocomotiveScroll({
   smooth: true,
 });
 
-window.addEventListener('load', () =>{
-  console.log('fully ')
-})
+const startPreloader = () => {
+  const preloader = document.querySelector("#preloader");
+  const barconfirm = document.querySelector("#barconfirm");
+  const percent = document.querySelector("#percent");
+  const main = document.querySelector("#main");
 
-let homeAnime = () => {
-  let tl = gsap.timeline();
+  let width = 1;
+  let id;
 
-  tl.from("#nav", {
-    y: -25,
+  const frame = () => {
+    if (width >= 100) {
+      clearInterval(id);
+      tl.play();
+    } else {
+      width++;
+      barconfirm.style.width = width + "%";
+      percent.innerHTML = width + "%";
+    }
+  };
+
+  id = setInterval(frame, 10);
+
+  // Timeline for preloader animation
+  const tl = gsap.timeline({
+    paused: true,
+  });
+
+  tl.to("#percent, #bar", {
+    duration: 0.4,
     opacity: 0,
-    duration: 1.5,
-    ease: Expo.easeInOut,
+    zIndex: -1,
   })
-    .to(".boundingelem", {
-      y: 0,
-      duration: 2,
-      ease: Expo.easeInOut,
-      delay: -1,
-      stagger: 0.2,
-    })
-    .from("#home_footer", {
-      y: 10,
+    .to("#preloader", {
+      duration: 0.8,
+      height: "0%",
+    },'a')
+    .from("#main", {
+      duration: 1.4,
+      y: "150%",
+      delay: -0.6,
+    },'a')
+    .to("#main", {
+      opacity: 1,
+      y: "0%",
+    }).from("#nav", {
+      y: -25,
       opacity: 0,
       duration: 1.5,
-      delay: -1,
       ease: Expo.easeInOut,
-    });
+    })
+      .to(".boundingelem", {
+        y: 0,
+        duration: 2,
+        ease: Expo.easeInOut,
+        delay: -1,
+        stagger: 0.2,
+      })
+      .from("#home_footer", {
+        y: 10,
+        opacity: 0,
+        duration: 1.5,
+        delay: -1,
+        ease: Expo.easeInOut,
+      });
 };
-homeAnime();
+window.addEventListener("load", startPreloader());
 
 const showImage = () => {
   document.querySelectorAll(".elem").forEach((elem) => {
