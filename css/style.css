@@ -1,10 +1,10 @@
 @font-face {
   font-family: General Sans;
-  src: url(/assets/GeneralSans-Regular.otf);
+  src: url(/assets/fonts/GeneralSans-Medium.otf);
 }
 @font-face {
   font-family: General Sans Medium;
-  src: url(/assets/GeneralSans-Medium.otf);
+  src: url(/assets/fonts/GeneralSans-Medium.otf);
 }
 * {
   margin: 0;
