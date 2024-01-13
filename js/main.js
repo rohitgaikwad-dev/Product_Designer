@@ -1,4 +1,4 @@
-let cursor = new MouseFollower();
+const cursor = new MouseFollower();
 
 const scroll = new LocomotiveScroll({
   el: document.querySelector("#main"),
@@ -20,14 +20,13 @@ const startPreloader = () => {
       tl.play();
     } else {
       width++;
-      barconfirm.style.width = width + "%";
-      percent.innerHTML = width + "%";
+      barconfirm.style.width = `${width}%`;
+      percent.innerHTML = `${width}%`;
     }
   };
 
   id = setInterval(frame, 10);
 
-  // Timeline for preloader animation
   const tl = gsap.timeline({
     paused: true,
   });
@@ -40,12 +39,12 @@ const startPreloader = () => {
     .to("#preloader", {
       duration: 0.8,
       height: "0%",
-    },'a')
+    }, 'a')
     .from("#main", {
       duration: 1.4,
       y: "150%",
       delay: -0.6,
-    },'a')
+    }, 'a')
     .to("#main", {
       opacity: 1,
       y: "0%",
@@ -55,29 +54,32 @@ const startPreloader = () => {
       duration: 1.5,
       ease: Expo.easeInOut,
     })
-      .to(".boundingelem", {
-        y: 0,
-        duration: 2,
-        ease: Expo.easeInOut,
-        delay: -1,
-        stagger: 0.2,
-      })
-      .from("#home_footer", {
-        y: 10,
-        opacity: 0,
-        duration: 1.5,
-        delay: -1,
-        ease: Expo.easeInOut,
-      });
+    .to(".boundingelem", {
+      y: 0,
+      duration: 2,
+      ease: Expo.easeInOut,
+      delay: -1,
+      stagger: 0.2,
+    })
+    .from("#home_footer", {
+      y: 10,
+      opacity: 0,
+      duration: 1.5,
+      delay: -1,
+      ease: Expo.easeInOut,
+    });
 };
-window.addEventListener("load", startPreloader());
+
+window.addEventListener("DOMContentLoaded", startPreloader);
 
 const showImage = () => {
   document.querySelectorAll(".elem").forEach((elem) => {
     let rotate = 0;
     let diffrot = 0;
+
     elem.addEventListener("mousemove", (e) => {
-      let diffY = e.pageY - elem.getBoundingClientRect().top;
+      const { top } = elem.getBoundingClientRect();
+      let diffY = e.pageY - top;
       diffrot = rotate - e.pageX;
       rotate = e.pageX;
 
@@ -91,9 +93,10 @@ const showImage = () => {
     });
   });
 };
+
 const hideImage = () => {
   document.querySelectorAll(".elem").forEach((elem) => {
-    elem.addEventListener("mouseleave", (e) => {
+    elem.addEventListener("mouseleave", () => {
       gsap.to(elem.querySelector("img"), {
         opacity: 0,
         ease: Power3,
