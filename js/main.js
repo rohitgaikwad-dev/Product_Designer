@@ -1,10 +1,3 @@
-const cursor = new MouseFollower();
-
-const scroll = new LocomotiveScroll({
-  el: document.querySelector("#main"),
-  smooth: true,
-});
-
 const startPreloader = () => {
   const preloader = document.querySelector("#preloader");
   const barconfirm = document.querySelector("#barconfirm");
@@ -12,97 +5,99 @@ const startPreloader = () => {
   const main = document.querySelector("#main");
 
   let width = 1;
-  let id;
 
   const frame = () => {
     if (width >= 100) {
-      clearInterval(id);
       tl.play();
     } else {
       width++;
       barconfirm.style.width = `${width}%`;
       percent.innerHTML = `${width}%`;
+      requestAnimationFrame(frame);
     }
   };
 
-  id = setInterval(frame, 10);
+  frame();
 
   const tl = gsap.timeline({
     paused: true,
   });
 
   tl.to("#percent, #bar", {
-    duration: 0.4,
-    opacity: 0,
-    zIndex: -1,
-  })
+      duration: 0.4,
+      opacity: 0,
+      zIndex: -1,
+    }, 'preloader')
     .to("#preloader", {
       duration: 0.8,
       height: "0%",
-    }, 'a')
+    }, 'preloader')
     .from("#main", {
       duration: 1.4,
       y: "150%",
       delay: -0.6,
-    }, 'a')
+    }, 'preloader')
     .to("#main", {
       opacity: 1,
       y: "0%",
-    }).from("#nav", {
+    })
+    .from("#nav", {
       y: -25,
       opacity: 0,
       duration: 1.5,
-      ease: Expo.easeInOut,
     })
     .to(".boundingelem", {
       y: 0,
       duration: 2,
-      ease: Expo.easeInOut,
-      delay: -1,
       stagger: 0.2,
-    })
+    }, '-=1') // Adjusted delay
     .from("#home_footer", {
       y: 10,
       opacity: 0,
       duration: 1.5,
-      delay: -1,
       ease: Expo.easeInOut,
-    });
+    }, '-=1'); // Adjusted delay
 };
 
-window.addEventListener("DOMContentLoaded", startPreloader);
+const handleMouseMove = (elem, e) => {
+  const { top } = elem.getBoundingClientRect();
+  const diffY = e.pageY - top;
+
+  gsap.to(elem.querySelector("img"), {
+    opacity: 1,
+    ease: Power3,
+    top: diffY,
+    left: e.pageX,
+    rotate: gsap.utils.clamp(-20, 20, rotateDiff(e)),
+  });
+};
+
+const handleMouseLeave = (elem) => {
+  gsap.to(elem.querySelector("img"), {
+    opacity: 0,
+    ease: Power3,
+  });
+};
+
+const rotateDiff = (e) => {
+  const diffRot = rotate - e.pageX;
+  rotate = e.pageX;
+  return diffRot * 0.5;
+};
+
+let rotate = 0;
 
 const showImage = () => {
   document.querySelectorAll(".elem").forEach((elem) => {
-    let rotate = 0;
-    let diffrot = 0;
-
-    elem.addEventListener("mousemove", (e) => {
-      const { top } = elem.getBoundingClientRect();
-      let diffY = e.pageY - top;
-      diffrot = rotate - e.pageX;
-      rotate = e.pageX;
-
-      gsap.to(elem.querySelector("img"), {
-        opacity: 1,
-        ease: Power3,
-        top: diffY,
-        left: e.pageX,
-        rotate: gsap.utils.clamp(-20, 20, diffrot * 0.5),
-      });
-    });
+    elem.addEventListener("mousemove", (e) => handleMouseMove(elem, e));
   });
 };
 
 const hideImage = () => {
   document.querySelectorAll(".elem").forEach((elem) => {
-    elem.addEventListener("mouseleave", () => {
-      gsap.to(elem.querySelector("img"), {
-        opacity: 0,
-        ease: Power3,
-      });
-    });
+    elem.addEventListener("mouseleave", () => handleMouseLeave(elem));
   });
 };
+
 showImage();
 hideImage();
